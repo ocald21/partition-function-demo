@@ -1,0 +1,18 @@
+
+p {
+    margin: 20px 0px 20px 0px;
+    
+    text-align: center;
+    align-content: center;
+}
+
+.variables-formatting {
+    height: 90%;
+    width: 40%;
+    border: 1px solid black;
+    font-size: 20px;
+}
+
+.equations-formatting {
+
+}
