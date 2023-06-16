@@ -1,0 +1,26 @@
+
+.button-formatting {
+    margin: 0px 0px 0px 5px;
+    padding: 0px 20px 0px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.button-formatting:hover {
+    outline-color: rgb(45, 129, 132);
+    outline-style: solid;
+    outline-width: 2px;
+}
+
+.button-formatting:active {
+    background-color: aliceblue;
+}
+
+.blue-button {
+    background-color: rgb(142, 212, 141);
+}
+
+.red-button {
+    background-color: rgb(200, 71, 71);
+}

@@ -1,18 +1,29 @@
 
-p {
-    margin: 20px 0px 20px 0px;
-    
-    text-align: center;
-    align-content: center;
-}
-
 .variables-formatting {
-    height: 90%;
-    width: 40%;
+    height: 100%;
+    width: 30%;
     border: 1px solid black;
     font-size: 20px;
+
+    line-height: 100%;
+    text-align: center;
 }
 
-.equations-formatting {
+.variable-container {
+    margin: 0;
+    padding: 0px 0px 0px 0px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
 
+.variable-name {
+    min-width: 100%;
+    height: 20px;
+    padding: 20px 0px 10px 0px;
+    border-bottom-style:inset;
+}
+
+.variable-buttons {
+    display: flex;
 }

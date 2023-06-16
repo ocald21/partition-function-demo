@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import "../../css/children/VariableComponent.css"
+import "../../css/components/DistributionGraph.css"
 import VariableProps from "../props/VariableProps";
 
 const DistributionGraph: FC<VariableProps> = (props) => {
