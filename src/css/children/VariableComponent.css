@@ -1,0 +1,10 @@
+
+.variable-component-formatting {
+    margin: 0;
+    padding: 0px 0px 0px 0px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    display: flex;
+}

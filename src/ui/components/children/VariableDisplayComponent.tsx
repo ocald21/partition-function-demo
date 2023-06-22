@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import "../../../css/children/VariableDisplayComponent.css"
 
 interface VariableDisplayComponentProps {
     value: number
 }
  
-const VariableComponent: FC<VariableDisplayComponentProps> = (props) => {
+const VariableDisplayComponent: React.FC<VariableDisplayComponentProps> = (props) => {
     return (
         <div className="variable-display-component-formatting">
             <p>{props.value}</p>
@@ -13,4 +13,4 @@ const VariableComponent: FC<VariableDisplayComponentProps> = (props) => {
      );
 }
  
-export default VariableComponent;
+export default VariableDisplayComponent;

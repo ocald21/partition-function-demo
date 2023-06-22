@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
 import VariableProps from "../props/VariableProps";
 
-const CartesianPlane: FC<VariableProps> = (props) => {
+const CartesianPlane: React.FC<VariableProps> = (props) => {
     return(
         <div className="plane-formatting">
         </div>

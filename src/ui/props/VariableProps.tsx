@@ -2,7 +2,7 @@
 interface VariableProps {
     temperature: number;
     energyLevel: number;
-    highestLevel: number;
+    levelCount: number;
 }
 
 export default VariableProps;

@@ -1,57 +1,58 @@
-import React, { FC } from "react";
+import React from "react";
 import "../../css/components/VariablesMenu.css"
 import DynamicVariableProps from "../props/DynamicVariableProps";
 import { MathComponent } from "mathjax-react";
-import VariableDisplayComponent from "./children/VariableDisplayComponent";
-import ButtonComponent from "./children/ButtonComponent";
-import SimulationVariables from "../../SimulationVariables"
+import VariableComponent from "./children/VariableComponent";
+import SimulationContainer from "../../SimulationVariables";
 
-const VariablesMenu: FC<DynamicVariableProps> = (props) => {
-    const incrementEnergyLevel = () => {
-        const newLevel = props.energyLevel === SimulationVariables.HIGHEST_ENERGY_LEVEL
-            ? props.energyLevel
-            : props.energyLevel + 1;
-        props.updateEnergyLevel(newLevel);
-    }
-
-    const decrementEnergyLevel = () => {
-        const newLevel = props.energyLevel === 0
-            ? props.energyLevel
-            : props.energyLevel - 1;
-        props.updateEnergyLevel(newLevel)
-    }
-
+const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
     return(
         <div className="variables-formatting">
-            <MathComponent
+            <div className="math-component-formatting">
+                <MathComponent
                     tex={String.raw`q = \sum\limits_{n=0}^s e^{\frac{-E_i}{kT}}`}
                 />
 
-            <MathComponent 
-                tex={String.raw`P_${props.energyLevel} = \frac{e^{\frac{-E_${props.energyLevel}}{kT}}}{q}`}
+                <MathComponent 
+                    tex={String.raw`P_${props.energyLevel} = \frac{e^{\frac{-E_${props.energyLevel}}{kT}}}{q}`}
+                />
+            </div>
+
+            <p className="variable-name">
+                Energy Level (n)
+            </p>
+
+            <VariableComponent 
+                value={props.energyLevel}
+                incrementStep={1} 
+                lowestValue={SimulationContainer.LOWEST_ENERGY_LEVEL} 
+                highestValue={SimulationContainer.HIGHEST_ENERGY_LEVEL - 1} 
+                updateValue={props.updateEnergyLevel}
             />
 
-            <div className="variable-container">
-                <div className="variable-name">
-                    <p>a</p>
-                </div>
+            <p className="variable-name">
+                Level Count (s)
+            </p>
 
-                <div className="variable-buttons">
-                    <VariableDisplayComponent value={props.energyLevel}/>
+            <VariableComponent 
+                value={props.levelCount}
+                incrementStep={1}
+                lowestValue={SimulationContainer.LOWEST_ENERGY_LEVEL + 2}
+                highestValue={SimulationContainer.HIGHEST_ENERGY_LEVEL}
+                updateValue={props.updateLevelCount}
+            />
 
-                    <ButtonComponent 
-                        formatClass="blue-button" 
-                        text="+1"
-                        onClick={incrementEnergyLevel}
-                    />
+            <p className="variable-name">
+                Temperature (K)
+            </p>
 
-                    <ButtonComponent 
-                        formatClass="red-button"
-                        text="-1"
-                        onClick={decrementEnergyLevel}
-                    />
-                </div>
-            </div>
+            <VariableComponent 
+                value={props.temperature} 
+                incrementStep={10} 
+                lowestValue={SimulationContainer.LOWEST_TEMPERATURE} 
+                highestValue={SimulationContainer.HIGHEST_TEMPERATURE} 
+                updateValue={props.updateTemperature}                
+            />
         </div>
     );
 }

@@ -7,14 +7,14 @@ import CartesianPlane from "./components/CartesianPlane.tsx";
 const App = () => {
   const [temperature, updateTemperature] = useState(0)
   const [energyLevel, updateEnergyLevel] = useState(0)
-  const [highestLevel, updateHighestLevel] = useState(2)
+  const [levelCount, updateLevelCount] = useState(2 )
 
   return (
     <div className="app-formatting">
       <DistributionGraph />
       <VariablesMenu 
-        temperature={temperature} energyLevel={energyLevel} highestLevel={highestLevel}
-        updateTemperature={updateTemperature}  updateEnergyLevel={updateEnergyLevel} updateHighestLevel={updateHighestLevel}
+        temperature={temperature} energyLevel={energyLevel} levelCount={levelCount}
+        updateTemperature={updateTemperature}  updateEnergyLevel={updateEnergyLevel} updateLevelCount={updateLevelCount}
       />
       <CartesianPlane />
     </div>

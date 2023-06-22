@@ -1,10 +1,13 @@
-import React, { FC } from "react";
+import React from "react";
 import "../../css/components/DistributionGraph.css"
 import VariableProps from "../props/VariableProps";
 
-const DistributionGraph: FC<VariableProps> = (props) => {
+const DistributionGraph: React.FC<VariableProps> = (props) => {
     return (
         <div className="graph-formatting">
+            <p className="vertical-axis-label">
+                n
+            </p>
         </div>
     );
 }
