@@ -3,7 +3,7 @@ import "../../css/components/VariablesMenu.css"
 import DynamicVariableProps from "../props/DynamicVariableProps";
 import { MathComponent } from "mathjax-react";
 import VariableComponent from "./children/VariableComponent";
-import SimulationContainer from "../../SimulationVariables";
+import SimulationContainer from "../../SimulationContainer";
 
 const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
     return(
@@ -37,7 +37,7 @@ const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
             <VariableComponent 
                 value={props.levelCount}
                 incrementStep={1}
-                lowestValue={SimulationContainer.LOWEST_ENERGY_LEVEL + 2}
+                lowestValue={SimulationContainer.LOWEST_LEVEL_COUNT}
                 highestValue={SimulationContainer.HIGHEST_ENERGY_LEVEL}
                 updateValue={props.updateLevelCount}
             />
