@@ -1,7 +1,8 @@
 import React from 'react';
 import VariableDisplayComponent from './VariableDisplayComponent';
-import "../../../css/children/VariableComponent.css"
 import ButtonComponent from './ButtonComponent';
+import buttonStyles from "../../../css/children/ButtonComponent.module.css";
+import styles from "../../../css/children/VariableComponent.module.css"
 
 interface VariableComponentProps {
     value: number
@@ -27,19 +28,19 @@ const VariableComponent: React.FC<VariableComponentProps> = (props) => {
     }
 
     return ( 
-        <div className="variable-component-formatting">
+        <div className={styles.variableComponentFormatting}>
             <VariableDisplayComponent
                 value={props.value}
             />
 
             <ButtonComponent 
-                formatClass="green-button" 
+                formatClass={buttonStyles.greenButton}
                 text={'+' + props.incrementStep}
                 onClick={incrementEnergyLevel}
             />
 
             <ButtonComponent 
-                formatClass="red-button"
+                formatClass={buttonStyles.redButton}
                 text={'-' + props.incrementStep}
                 onClick={decrementEnergyLevel}
             />

@@ -1,5 +1,5 @@
 
-.app-formatting {
+.appFormatting {
     height: calc(100vh - 44px);
     width: calc(100vw - 44px);
     margin: 10px;
@@ -11,7 +11,7 @@
     display: flex;
 }
 
-.graph-section {
+.graphSection {
     height: 100%;
     width: 70%;
 }

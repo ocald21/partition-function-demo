@@ -3,3 +3,7 @@ body {
     margin: 0px;
     background-color: azure;
 }
+
+.flex-div {
+    display: flex;
+}

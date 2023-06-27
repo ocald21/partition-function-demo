@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../../css/children/ButtonComponent.css';
+import styles from '../../../css/children/ButtonComponent.module.css';
 
 const updateIntervalDelay = 500;
 const incrementDelay = 10;
@@ -13,6 +13,7 @@ interface ButtonComponentProps {
 const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
     const [buttonPressed, updateButtonPressed] = useState(false);
     const [time, updateTime] = useState(Date.now());
+    
     const handleMouseUp = () => updateButtonPressed(false);
     const handleMouseDown = () => {
         updateButtonPressed(true);
@@ -33,7 +34,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
     return ( 
         <div>
             <button 
-                className={"button-formatting " + props.formatClass}
+                className={styles.buttonFormatting + " " + props.formatClass}
                 onClick={props.onClick}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}

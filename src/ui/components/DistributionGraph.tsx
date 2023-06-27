@@ -1,25 +1,20 @@
 import React from "react";
-import "../../css/components/DistributionGraph.css";
 import VariableProps from "../props/VariableProps";
-import PlotCanvas from "./children/PlotCanvas";
+import { MathComponent } from "mathjax-react";
+import styles from "../../css/components/DistributionGraph.module.css"
 
 const DistributionGraph: React.FC<VariableProps> = (props) => {
     return (
-        <div className="graph-formatting">        
-            <PlotCanvas 
-                margin={{
-                    top: 10,
-                    right: 10,
-                    bottom: 10,
-                    left: 10
-                }} 
-                width={600}
-                height={400} 
-
-                temperature={props.temperature}
-                energyLevel={props.energyLevel}
-                levelCount={props.levelCount}
-            />
+        <div className={styles.graphFormatting}>
+            <div className={styles.verticalAxisContainer}>     
+                <div className={styles.verticalAxisLabel}>
+                    <MathComponent tex="P_i"/>
+                </div>
+                <div className={styles.graphContainer}></div>
+            </div>  
+            <div className={styles.horizontalAxisContainer}>
+                <p className={styles.horizontalAxisLabel}>n</p>
+            </div>
         </div>
     );
 }

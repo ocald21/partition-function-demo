@@ -1,5 +1,5 @@
 
-.button-formatting {
+.buttonFormatting {
     margin: 0px 0px 0px 5px;
     padding: 0px 20px 0px 20px;
     border: none;
@@ -7,20 +7,20 @@
     font-weight: bold;
 }
 
-.button-formatting:hover {
+.buttonFormatting:hover {
     outline-color: rgb(45, 129, 132);
     outline-style: solid;
     outline-width: 2px;
 }
 
-.button-formatting:active {
+.buttonFormatting:active {
     background-color: aliceblue;
 }
 
-.green-button {
+.greenButton {
     background-color: rgb(142, 212, 141);
 }
 
-.red-button {
+.redButton {
     background-color: rgb(200, 71, 71);
 }

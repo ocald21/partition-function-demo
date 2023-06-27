@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "../css/App.css";
+import { useState } from "react";
 import DistributionGraph from "./components/DistributionGraph.tsx";
 import VariablesMenu from "./components/VariablesMenu.tsx";
 import CartesianPlane from "./components/CartesianPlane.tsx";
 import SimulationContainer from "../SimulationContainer";
+import styles from "../css/App.module.css"
 
 const App = () => {
   const [temperature, updateTemperature] = useState(SimulationContainer.LOWEST_TEMPERATURE);
@@ -11,8 +11,8 @@ const App = () => {
   const [levelCount, updateLevelCount] = useState(SimulationContainer.LOWEST_LEVEL_COUNT);
 
   return (
-    <div className="app-formatting">
-      <div className="graph-section">
+    <div className={styles.appFormatting}>
+      <div className={styles.graphSection}>
         <DistributionGraph />
         <CartesianPlane />
       </div>

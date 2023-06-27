@@ -1,5 +1,5 @@
-import React from 'react';
-import "../../../css/children/VariableDisplayComponent.css"
+import React, { CSSProperties } from 'react';
+import styles from "../../../css/children/VariableDisplayComponent.module.css"
 
 interface VariableDisplayComponentProps {
     value: number
@@ -7,7 +7,7 @@ interface VariableDisplayComponentProps {
  
 const VariableDisplayComponent: React.FC<VariableDisplayComponentProps> = (props) => {
     return (
-        <div className="variable-display-component-formatting">
+        <div className={styles.variableDisplayComponentFormatting}>
             <p>{props.value}</p>
         </div>
      );

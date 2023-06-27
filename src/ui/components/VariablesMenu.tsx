@@ -1,14 +1,14 @@
 import React from "react";
-import "../../css/components/VariablesMenu.css"
 import DynamicVariableProps from "../props/DynamicVariableProps";
 import { MathComponent } from "mathjax-react";
 import VariableComponent from "./children/VariableComponent";
 import SimulationContainer from "../../SimulationContainer";
+import styles from "../../css/components/VariablesMenu.module.css";
 
 const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
     return(
-        <div className="variables-formatting">
-            <div className="math-component-formatting">
+        <div className={styles.variablesFormatting}>
+            <div className={styles.mathComponentFormatting}>
                 <MathComponent
                     tex={String.raw`q = \sum\limits_{n=0}^s e^{\frac{-E_i}{kT}}`}
                 />
@@ -18,7 +18,7 @@ const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
                 />
             </div>
 
-            <p className="variable-name">
+            <p className={styles.variableName}>
                 Energy Level (n)
             </p>
 
@@ -30,7 +30,7 @@ const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
                 updateValue={props.updateEnergyLevel}
             />
 
-            <p className="variable-name">
+            <p className={styles.variableName}>
                 Level Count (s)
             </p>
 
@@ -42,7 +42,7 @@ const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
                 updateValue={props.updateLevelCount}
             />
 
-            <p className="variable-name">
+            <p className={styles.variableName}>
                 Temperature (K)
             </p>
 

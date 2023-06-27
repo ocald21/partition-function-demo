@@ -5,22 +5,33 @@ const LOWEST_ENERGY_LEVEL = 0;
 const LOWEST_TEMPERATURE = 0;
 const LOWEST_LEVEL_COUNT = 2;
 
-const EnergyMap = {
-    0: 0.0,
-    1: 10e1.toExponential,
-    2: 10e2.toExponential,
-    3: 10e3.toExponential,
-    4: 10e4.toExponential,
-} as const;
+const EnergyMap = new Map<number, number>([
+    [0, 0.0],
+    [1, 10],
+    [2, 100],
+    [3, 1000],
+    [4, 10000],
+]);
 
 function calculateProbability(
     temperature: number,
     energyLevel: number,
     levelCount: number,
-): number {
-    EnergyMap[0]
+) {
+    if (temperature <= 0.0) {
+        return 0.0
+    }
 
-    return 0.0;
+    const energy = EnergyMap.get(energyLevel)!;
+    var denominator = 0;
+
+    for (let i = 0; i < levelCount; i++) {
+        denominator += Math.exp(-EnergyMap.get(i)! / temperature);
+    }
+
+    const numerator = Math.exp(-energy / temperature);
+
+    return numerator / denominator;
 }
 
 const SimulationContainer = {
