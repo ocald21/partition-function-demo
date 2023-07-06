@@ -1,16 +1,16 @@
 
 const HIGHEST_ENERGY_LEVEL = 5;
-const HIGHEST_TEMPERATURE = 1_000_000;
+const HIGHEST_TEMPERATURE = 100;
 const LOWEST_ENERGY_LEVEL = 0;
 const LOWEST_TEMPERATURE = 0;
 const LOWEST_LEVEL_COUNT = 2;
 
 const EnergyMap = new Map<number, number>([
-    [0, 0.0],
+    [0, 0],
     [1, 10],
-    [2, 100],
-    [3, 1000],
-    [4, 10000],
+    [2, 20],
+    [3, 30],
+    [4, 40],
 ]);
 
 function calculateProbability(
@@ -32,6 +32,19 @@ function calculateProbability(
     const numerator = Math.exp(-energy / temperature);
 
     return numerator / denominator;
+}
+
+function getCoordinatePairs(
+    energyLevel: number,
+    levelCount: number,
+): Map<number, number> {
+    var coordinates: Map<number, number> = new Map();
+
+    for (let i = LOWEST_TEMPERATURE; i <= HIGHEST_TEMPERATURE; i++) {
+        coordinates.set(i, calculateProbability(i, energyLevel, levelCount));
+    }
+
+    return coordinates;
 }
 
 const SimulationContainer = {

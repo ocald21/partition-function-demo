@@ -48,7 +48,7 @@ const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
 
             <VariableComponent 
                 value={props.temperature} 
-                incrementStep={10} 
+                incrementStep={1} 
                 lowestValue={SimulationContainer.LOWEST_TEMPERATURE} 
                 highestValue={SimulationContainer.HIGHEST_TEMPERATURE} 
                 updateValue={props.updateTemperature}                
