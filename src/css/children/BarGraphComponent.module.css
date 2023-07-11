@@ -1,0 +1,26 @@
+
+.barGraphComponentContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+}
+
+.horizontalAxisMarkings {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* box-sizing: border-box;
+    border: 1px solid turquoise; */
+}
+
+.horizontalMarkingFormatting {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    font-family: sans-serif;
+    font-size: 14px;
+    text-align: center;
+}

@@ -1,8 +1,9 @@
 import { FC, useEffect, useRef } from 'react';
 import styles from '../../../css/children/GraphComponent.module.css';
 import VariableProps from '../../props/VariableProps';
-
-type CanvasRef = HTMLCanvasElement | null;
+import SimulationContainer from '../../../SimulationContainer';
+import { MathComponent } from 'mathjax-react';
+import { CanvasRef } from '../../../types';
 
 interface GraphProps extends VariableProps {
     verticalAxisLabel: JSX.Element
@@ -42,17 +43,45 @@ const GraphComponent: FC<GraphProps> = (props) => {
             return;
         }
 
-        const strokeStyles = [rgb()]
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
-        
-        context.strokeStyle = "#FF0000"
+        const points = SimulationContainer.getCoordinatePairs(props.energyLevel, props.levelCount)
+
+        context.strokeStyle = "#4903fc"
+        context.lineWidth = 8;
         context.beginPath();
-        context.moveTo(0,0);
-        context.lineTo(1000, 500);
-        context.stroke();
-        // context.closePath();
 
-    }, []);
+        points.forEach((probability, temperature) => {
+            const mappedX = canvas.width * (temperature / SimulationContainer.HIGHEST_TEMPERATURE);
+            const mappedY = canvas.height - (probability * canvas.height);
+
+            context.lineTo(mappedX, mappedY);
+        });
+
+        context.stroke();
+        context.closePath();
+        
+        context.strokeStyle = "#d41e9d"
+        context.beginPath();
+
+        const probability = 
+            SimulationContainer.calculateProbability(
+                props.temperature,
+                props.energyLevel,
+                props.levelCount
+            );
+        const mappedX = canvas.width * (props.temperature / SimulationContainer.HIGHEST_TEMPERATURE)
+        const mappedY = canvas.height - (probability * canvas.height);
+
+        context.moveTo(mappedX, canvas.height);
+        context.lineTo(mappedX, mappedY);
+        context.stroke();
+        context.closePath();
+
+        const rectSize = 30;
+        context.fillStyle = "#d15a15";
+        context.fillRect(mappedX - (rectSize / 2), mappedY - (rectSize / 2), rectSize, rectSize);
+    }, [props.energyLevel, props.levelCount, props.temperature]);
 
     return ( 
         <div className={styles.graphComponentContainer}>
@@ -79,12 +108,18 @@ const GraphComponent: FC<GraphProps> = (props) => {
                 <canvas
                     ref={canvasRef}
                     className={styles.graphFormatting}
-                    width={1000}
-                    height={500}
-                    
-                >
-
-                </canvas>
+                    width={2400}
+                    height={1200}
+                />
+                <div className={styles.probabilityContainer}>
+                    <MathComponent 
+                        tex={
+                            String.raw`P_i = 
+                                ${SimulationContainer.calculateProbability(props.temperature, props.energyLevel, props.levelCount).toFixed(5)}
+                            `
+                        }
+                    />
+                </div>
             </div>
 
             <div className={styles.horizontalAxisFormatting}>

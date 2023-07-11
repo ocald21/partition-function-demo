@@ -1,20 +1,19 @@
-import React from "react";
+import { FC } from "react";
 import VariableProps from "../props/VariableProps";
-import { MathComponent } from "mathjax-react";
 import styles from "../../css/components/DistributionGraph.module.css"
+import BarGraphComponent from "./children/BarGraphComponent";
+import { MathComponent } from "mathjax-react";
 
-const DistributionGraph: React.FC<VariableProps> = (props) => {
+const DistributionGraph: FC<VariableProps> = (props) => {
     return (
         <div className={styles.graphFormatting}>
-            <div className={styles.verticalAxisContainer}>     
-                <div className={styles.verticalAxisLabel}>
-                    <MathComponent tex="P_i"/>
-                </div>
-                <div className={styles.graphContainer}></div>
-            </div>  
-            <div className={styles.horizontalAxisContainer}>
-                <p className={styles.horizontalAxisLabel}>n</p>
-            </div>
+            <BarGraphComponent
+                energyLevel={props.energyLevel} temperature={props.temperature} levelCount={props.levelCount}
+                verticalAxisLabel={<MathComponent tex="P_i" />}
+                horizontalAxisLabel={<>n</>} 
+                verticalAxisStep={0.2}
+                maxY={1} minY={0}
+            />
         </div>
     );
 }

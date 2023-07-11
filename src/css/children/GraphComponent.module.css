@@ -12,6 +12,7 @@
 .graphContainer {
     height: 80%;
     width: 85%;
+    position: relative;
     /* box-sizing: border-box;
     border: 2px solid orange; */
 }
@@ -21,6 +22,15 @@
     width: 100%;
     box-sizing: border-box;
     border: 1px solid green;
+}
+
+.probabilityContainer {
+    position: absolute;
+    top: -10px;
+    left: calc(100% - 130px);
+    font-size: 22px;
+    /* box-sizing: border-box;
+    border: 2px solid orange; */
 }
 
 .verticalAxisFormatting {

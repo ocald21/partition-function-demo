@@ -2,15 +2,15 @@
 .graphFormatting {
     height: 50%;    
     width: 100%;
-    border: 1px solid black;
-    justify-content: right;
+    /* justify-content: right; */
 }
 
 .graphContainer {
     height: 100% - 2px;
     width: 85%;
     padding: 0px 0px 5% 5%;
-    border: 2px solid gray;
+    box-sizing: border-box;
+    border: 1px solid gray;
 }
 
 .verticalAxisContainer {

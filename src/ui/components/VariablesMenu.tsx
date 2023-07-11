@@ -26,7 +26,7 @@ const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
                 value={props.energyLevel}
                 incrementStep={1} 
                 lowestValue={SimulationContainer.LOWEST_ENERGY_LEVEL} 
-                highestValue={SimulationContainer.HIGHEST_ENERGY_LEVEL - 1} 
+                highestValue={props.levelCount - 1} 
                 updateValue={props.updateEnergyLevel}
             />
 
