@@ -4,8 +4,10 @@
     margin-right:0%;
     max-height: 40px;
     max-width: 100px;
-    border: 2px solid black;
+    border: 2px solid #7a5af5;
     border-radius: 5px;
+
+    background-color: #575757;
 
     line-height: 40px;
     text-align: center;

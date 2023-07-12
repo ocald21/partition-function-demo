@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../../css/children/ButtonComponent.module.css';
 
 const updateIntervalDelay = 500;
-const incrementDelay = 10;
+const incrementDelay = 1;
 
 interface ButtonComponentProps {
     text: string

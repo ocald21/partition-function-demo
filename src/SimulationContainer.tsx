@@ -1,10 +1,10 @@
 
 const HIGHEST_ENERGY_LEVEL = 5;
-const HIGHEST_TEMPERATURE = 100;
+const HIGHEST_TEMPERATURE = 1000;
 const LOWEST_ENERGY_LEVEL = 0;
 const LOWEST_TEMPERATURE = 0;
 const LOWEST_LEVEL_COUNT = 2;
-const ENERGY_MULTIPLIER = 6;
+const ENERGY_MULTIPLIER = 18;
 
 function calculateProbability(
     temperature: number,

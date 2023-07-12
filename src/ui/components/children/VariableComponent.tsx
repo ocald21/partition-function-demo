@@ -1,4 +1,4 @@
-import React from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import VariableDisplayComponent from './VariableDisplayComponent';
 import ButtonComponent from './ButtonComponent';
 import buttonStyles from "../../../css/children/ButtonComponent.module.css";
@@ -9,10 +9,10 @@ interface VariableComponentProps {
     incrementStep: number
     lowestValue: number
     highestValue: number
-    updateValue: React.Dispatch<React.SetStateAction<number>>
+    updateValue: Dispatch<SetStateAction<number>>
 }
  
-const VariableComponent: React.FC<VariableComponentProps> = (props) => {
+const VariableComponent: FC<VariableComponentProps> = (props) => {
     const incrementEnergyLevel = () => {
         const newLevel = props.value + props.incrementStep > props.highestValue
             ? props.value

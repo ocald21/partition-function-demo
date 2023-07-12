@@ -114,7 +114,7 @@ const GraphComponent: FC<GraphProps> = (props) => {
                 <div className={styles.probabilityContainer}>
                     <MathComponent 
                         tex={
-                            String.raw`P_i = 
+                            `P_${props.energyLevel} = 
                                 ${SimulationContainer.calculateProbability(props.temperature, props.energyLevel, props.levelCount).toFixed(5)}
                             `
                         }
@@ -129,6 +129,9 @@ const GraphComponent: FC<GraphProps> = (props) => {
                             <p
                                 key={value}
                                 className={styles.horizontalMarkingFormatting}
+                                style={{
+                                    width: `calc(100% / ${horizontalRange.length})`,
+                                }}
                             >
                                 {value}
                             </p>
@@ -145,7 +148,3 @@ const GraphComponent: FC<GraphProps> = (props) => {
 }
  
 export default GraphComponent;
-function rgb() {
-    throw new Error('Function not implemented.');
-}
-

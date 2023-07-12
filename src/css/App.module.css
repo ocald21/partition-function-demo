@@ -4,9 +4,10 @@
     width: calc(100vw - 44px);
     margin: 10px;
     padding: 10px;
-    border: 2px solid lightgray;
+    border: 1px solid #8b8b8b;
     border-radius: 5px;
-    background-color: whitesmoke;
+    background-color: #211938;
+    color: whitesmoke;
 
     display: flex;
 }

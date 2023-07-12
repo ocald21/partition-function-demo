@@ -1,8 +1,9 @@
+import { Dispatch, SetStateAction } from "react";
 
 interface VariableStateProps {
-    updateTemperature: React.Dispatch<React.SetStateAction<number>>;
-    updateEnergyLevel: React.Dispatch<React.SetStateAction<number>>;
-    updateLevelCount: React.Dispatch<React.SetStateAction<number>>;
+    updateTemperature: Dispatch<SetStateAction<number>>;
+    updateEnergyLevel: Dispatch<SetStateAction<number>>;
+    updateLevelCount: Dispatch<SetStateAction<number>>;
 }
 
 export default VariableStateProps;

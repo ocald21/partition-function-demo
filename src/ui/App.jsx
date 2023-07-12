@@ -21,6 +21,7 @@ const App = () => {
       <div className={styles.graphSection}>
         <DistributionGraph 
           temperature={temperature} energyLevel={energyLevel} levelCount={levelCount}
+          updateTemperature={updateTemperature}  updateEnergyLevel={updateEnergyLevel} updateLevelCount={updateLevelCount}
         />
         <CartesianPlane
           temperature={temperature} energyLevel={energyLevel} levelCount={levelCount}
