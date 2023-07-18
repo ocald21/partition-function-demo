@@ -1,36 +1,54 @@
-import { useState, useEffect } from "react";
-import DistributionGraph from "./components/DistributionGraph.tsx";
+import { MathComponent } from "mathjax-react";
+import { useState } from "react";
+import AppConstants from "../AppConstants.tsx";
+import BarGraphComponent from "./components/children/BarGraphComponent.tsx";
+import LineGraphComponent from "./components/children/LineGraphComponent.tsx";
 import VariablesMenu from "./components/VariablesMenu.tsx";
-import CartesianPlane from "./components/CartesianPlane.tsx";
-import SimulationContainer from "../SimulationContainer";
 import styles from "../css/App.module.css"
 
 const App = () => {
-  const [temperature, updateTemperature] = useState(SimulationContainer.LOWEST_TEMPERATURE);
-  const [energyLevel, updateEnergyLevel] = useState(SimulationContainer.LOWEST_ENERGY_LEVEL);
-  const [levelCount, updateLevelCount] = useState(SimulationContainer.LOWEST_LEVEL_COUNT);
+  const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE);
+  const [energyLevel, updateEnergyLevel] = useState(AppConstants.LOWEST_ENERGY_LEVEL);
+  const [levelCount, updateLevelCount] = useState(AppConstants.LOWEST_LEVEL_COUNT);
 
-  useEffect(() => {
-    if (energyLevel >= levelCount - 1) {
-      updateEnergyLevel(levelCount - 1);
-    }
-  }, [levelCount]);
+  const variables = {
+    temperature,
+    energyLevel,
+    levelCount,
+    updateTemperature,
+    updateEnergyLevel,
+    updateLevelCount,
+  };
 
   return (
-    <div className={styles.appFormatting}>
-      <div className={styles.graphSection}>
-        <DistributionGraph 
-          temperature={temperature} energyLevel={energyLevel} levelCount={levelCount}
-          updateTemperature={updateTemperature}  updateEnergyLevel={updateEnergyLevel} updateLevelCount={updateLevelCount}
+    <div className={styles.app}>
+      <div className={styles.graphsDiv}>
+        <BarGraphComponent
+          { ...variables }
+          style={styles.graph}
+
+          verticalAxisLabel={<MathComponent tex="P_i" />}
+          horizontalAxisLabel={<>n</>} 
+          verticalAxisStep={0.2}
+          maxY={1} minY={0}
         />
-        <CartesianPlane
-          temperature={temperature} energyLevel={energyLevel} levelCount={levelCount}
+
+        <LineGraphComponent
+          { ...variables }
+          style={styles.graph}
+
+          verticalAxisLabel={<MathComponent tex={`P_${energyLevel}`} />}
+          horizontalAxisLabel={<>T</>} 
+          verticalAxisStep={0.2} 
+          horizontalAxisStep={AppConstants.HIGHEST_TEMPERATURE / 10} 
+          maxY={1} minY={0} 
+          maxX={AppConstants.HIGHEST_TEMPERATURE} minX={AppConstants.LOWEST_TEMPERATURE}
         />
       </div>
-
+      
       <VariablesMenu 
-        temperature={temperature} energyLevel={energyLevel} levelCount={levelCount}
-        updateTemperature={updateTemperature}  updateEnergyLevel={updateEnergyLevel} updateLevelCount={updateLevelCount}
+        style={styles.variablesMenu} 
+        { ...variables }
       />
     </div>
   );

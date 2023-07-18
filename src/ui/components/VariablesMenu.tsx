@@ -1,14 +1,21 @@
-import React from "react";
-import DynamicVariableProps from "../props/DynamicVariableProps";
+import { FC, useEffect } from "react";
 import { MathComponent } from "mathjax-react";
 import VariableComponent from "./children/VariableComponent";
-import SimulationContainer from "../../SimulationContainer";
+import SimulationContainer from "../../SimulationFunctions";
 import styles from "../../css/components/VariablesMenu.module.css";
+import DynamicComponentProps from "../props/DynamicComponentProps";
+import AppConstants from "../../AppConstants";
 
-const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
+const VariablesMenu: FC<DynamicComponentProps> = (props) => {
+    useEffect(() => {
+        if (props.energyLevel >= props.levelCount - 1) {
+            props.updateEnergyLevel(props.levelCount - 1);
+        }
+    }, [props.levelCount]);
+
     return(
-        <div className={styles.variablesFormatting}>
-            <div className={styles.mathComponentFormatting}>
+        <div className={props.style}>
+            <div className={styles.equationsDiv}>
                 <MathComponent
                     tex={String.raw`q = \sum\limits_{n=0}^s e^{\frac{-E_i}{kT}}`}
                 />
@@ -18,39 +25,30 @@ const VariablesMenu: React.FC<DynamicVariableProps> = (props) => {
                 />
             </div>
 
-            <p className={styles.variableName}>
-                Energy Level (n)
-            </p>
-
-            <VariableComponent 
+            <VariableComponent
+                title={"Energy Level (n)"}
                 value={props.energyLevel}
                 incrementStep={1} 
-                lowestValue={SimulationContainer.LOWEST_ENERGY_LEVEL} 
+                lowestValue={AppConstants.LOWEST_ENERGY_LEVEL} 
                 highestValue={props.levelCount - 1} 
                 updateValue={props.updateEnergyLevel}
             />
 
-            <p className={styles.variableName}>
-                Level Count (s)
-            </p>
-
-            <VariableComponent 
+            <VariableComponent
+                title={"Level Count (s)"}
                 value={props.levelCount}
                 incrementStep={1}
-                lowestValue={SimulationContainer.LOWEST_LEVEL_COUNT}
-                highestValue={SimulationContainer.HIGHEST_ENERGY_LEVEL}
+                lowestValue={AppConstants.LOWEST_LEVEL_COUNT}
+                highestValue={AppConstants.HIGHEST_ENERGY_LEVEL}
                 updateValue={props.updateLevelCount}
             />
 
-            <p className={styles.variableName}>
-                Temperature (K)
-            </p>
-
-            <VariableComponent 
+            <VariableComponent
+                title={"Temperature (K)"}
                 value={props.temperature} 
                 incrementStep={1} 
-                lowestValue={SimulationContainer.LOWEST_TEMPERATURE} 
-                highestValue={SimulationContainer.HIGHEST_TEMPERATURE} 
+                lowestValue={AppConstants.LOWEST_TEMPERATURE} 
+                highestValue={AppConstants.HIGHEST_TEMPERATURE} 
                 updateValue={props.updateTemperature}                
             />
         </div>

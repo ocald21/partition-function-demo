@@ -1,6 +1,4 @@
 
 type CanvasRef = HTMLCanvasElement | null;
 
-export {
-    CanvasRef
-};
+export default CanvasRef;

@@ -1,30 +1,17 @@
 import { FC } from "react";
 import barStyles from "../../../css/children/BarGraphComponent.module.css";
-import planeStyles from "../../../css/children/GraphComponent.module.css"
-import SimulationContainer from "../../../SimulationContainer";
-import DynamicVariableProps from "../../props/DynamicVariableProps";
-
-interface BarGraphComponentProps extends DynamicVariableProps {
-    verticalAxisLabel: JSX.Element
-    horizontalAxisLabel: JSX.Element
-    verticalAxisStep: number
-    maxY: number
-    minY: number
-}
+import planeStyles from "../../../css/children/LineGraphComponent.module.css"
+import SimulationFunctions from "../../../SimulationFunctions";
+import DynamicGraphProps from "../../props/DynamicGraphProps";
  
-const BarGraphComponent: FC<BarGraphComponentProps> = (props) => {
+const BarGraphComponent: FC<DynamicGraphProps> = (props) => {
     const verticalRange = 
-        Array.from(
-            { length: (props.maxY - props.minY) / props.verticalAxisStep},
-            (_, index) => index + 1
-        )
-        .reverse()
-        .map(
-            (value) => (value * props.verticalAxisStep).toPrecision(1)
+        SimulationFunctions.getNumberRange(
+            props.minY, props.maxY, props.verticalAxisStep, 1, true
         );
         
     return ( 
-        <div className={barStyles.barGraphComponentContainer}>
+        <div className={props.style}>
             <div className={planeStyles.verticalAxisFormatting}>
                 <div className={planeStyles.verticalAxisLabel}>
                     {props.verticalAxisLabel}
@@ -62,7 +49,7 @@ const BarGraphComponent: FC<BarGraphComponentProps> = (props) => {
                                         marginLeft: `${250 / props.levelCount}px`,
                                         marginRight: `${250 / props.levelCount}px`,
                                         backgroundColor: value == props.energyLevel ? "#4903fc" : "cyan",
-                                        height: `${SimulationContainer.calculateProbability(props.temperature, value, props.levelCount)*100}%`,
+                                        height: `${SimulationFunctions.calculateProbability(props.temperature, value, props.levelCount)*100}%`,
                                     }
                                 }
                                 onClick={() => { props.updateEnergyLevel(value) }}

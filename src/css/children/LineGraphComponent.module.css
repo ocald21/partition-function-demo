@@ -1,14 +1,4 @@
 
-.graphComponentContainer {
-    height: 100%;
-    width: 100%;
-    /* box-sizing: border-box;
-    border: 1px solid blue; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: right;
-}
-
 .graphContainer {
     height: 80%;
     width: 85%;

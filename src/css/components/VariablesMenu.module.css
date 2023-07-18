@@ -1,14 +1,5 @@
 
-.variablesFormatting {
-    height: 100%;
-    width: 30%;
-    font-size: 20px;
-
-    line-height: 100%;
-    text-align: center;
-}
-
-.mathComponentFormatting {
+.equationsDiv {
     height: 40%;
 
     display: flex;
@@ -19,10 +10,6 @@
     font-size: 28px;
 }
 
-.variableName {
-    min-width: 100%;
-    height: 20px;
-    padding: 50px 0px 15px 0px;
-
-    font-size: larger;
+p {
+    margin: 0px 0px 0px 0px;
 }
