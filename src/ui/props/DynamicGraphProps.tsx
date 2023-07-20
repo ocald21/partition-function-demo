@@ -1,8 +1,8 @@
 import DynamicComponentProps from "./DynamicComponentProps";
 
 interface DynamicGraphProps extends DynamicComponentProps {
-    verticalAxisLabel: JSX.Element
-    horizontalAxisLabel: JSX.Element
+    verticalAxisLabel: ReactElement
+    horizontalAxisLabel: ReactElement
     verticalAxisStep: number
     horizontalAxisStep: number
     maxY: number

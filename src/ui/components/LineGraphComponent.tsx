@@ -1,10 +1,10 @@
 import { FC, useEffect, useRef } from 'react';
-import styles from '../../../css/children/LineGraphComponent.module.css';
-import SimulationFunctions from '../../../SimulationFunctions';
+import styles from "../../css/LineGraphComponent.module.css"
+import SimulationFunctions from '../../SimulationFunctions';
 import { MathComponent } from 'mathjax-react';
-import CanvasRef from '../../../types/CanvasRef';
-import AppConstants from '../../../AppConstants';
-import DynamicGraphProps from '../../props/DynamicGraphProps';
+import AppConstants from '../../AppConstants';
+import DynamicGraphProps from '../props/DynamicGraphProps';
+import VerticalAxisComponent from './children/VerticalAxisComponent';
 
 const LineGraphComponent: FC<DynamicGraphProps> = (props) => {
     const verticalRange =
@@ -67,24 +67,10 @@ const LineGraphComponent: FC<DynamicGraphProps> = (props) => {
 
     return ( 
         <div className={props.style}>
-            <div className={styles.verticalAxisFormatting}>
-                <div className={styles.verticalAxisLabel}>
-                    {props.verticalAxisLabel}
-                </div>
-
-                <div className={styles.verticalAxisMarkings}>
-                    {
-                        verticalRange.map((value) => (
-                            <p
-                                key={value}
-                                className={styles.verticalMarkingFormatting}
-                            >
-                                {value}
-                            </p>
-                        ))
-                    }
-                </div>
-            </div>
+            <VerticalAxisComponent 
+                numberRange={verticalRange}
+                label={props.verticalAxisLabel}
+            />
 
             <div className={styles.graphContainer}>
                 <canvas
@@ -98,11 +84,8 @@ const LineGraphComponent: FC<DynamicGraphProps> = (props) => {
                         tex={
                             `P_${props.energyLevel} = 
                                 ${SimulationFunctions.calculateProbability(
-                                    props.temperature, 
-                                    props.energyLevel, 
-                                    props.levelCount
-                                 ).toFixed(5)
-                                }
+                                    props.temperature, props.energyLevel, props.levelCount
+                                  ).toFixed(5)}
                             `
                         }
                     />

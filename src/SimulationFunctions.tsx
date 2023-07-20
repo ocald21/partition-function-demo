@@ -1,5 +1,25 @@
 import AppConstants from "./AppConstants";
 
+function getRange(
+    length: number,
+    step: number,
+    fractionDigits: number,
+    reverse: boolean,
+) {
+    let numbers = Array.from(
+        { length: length },
+        (_, i) => i
+    )
+    
+    if (reverse) {
+        numbers = numbers.reverse()
+    }
+
+    return numbers.map(
+        (value) => (value * step).toFixed(fractionDigits)
+    );
+}
+
 function getNumberRange(
     low: number,
     high: number,
@@ -73,6 +93,7 @@ function getProbabilityPairs(
 }
 
 const SimulationContainer = {
+    getRange,
     getNumberRange,
     calculateProbability,
     getCoordinatePairs,

@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
 import { MathComponent } from "mathjax-react";
 import VariableComponent from "./children/VariableComponent";
-import SimulationContainer from "../../SimulationFunctions";
 import styles from "../../css/components/VariablesMenu.module.css";
 import DynamicComponentProps from "../props/DynamicComponentProps";
 import AppConstants from "../../AppConstants";

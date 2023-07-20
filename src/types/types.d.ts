@@ -1,4 +1,3 @@
 
+type ReactElement = React.JSX.Element;
 type CanvasRef = HTMLCanvasElement | null;
-
-export default CanvasRef;

@@ -1,8 +1,8 @@
 import { MathComponent } from "mathjax-react";
 import { useState } from "react";
 import AppConstants from "../AppConstants.tsx";
-import BarGraphComponent from "./components/children/BarGraphComponent.tsx";
-import LineGraphComponent from "./components/children/LineGraphComponent.tsx";
+import BarGraphComponent from "./components/BarGraphComponent.tsx";
+import LineGraphComponent from "./components/LineGraphComponent.tsx";
 import VariablesMenu from "./components/VariablesMenu.tsx";
 import styles from "../css/App.module.css"
 
