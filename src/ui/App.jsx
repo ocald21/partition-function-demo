@@ -27,7 +27,7 @@ const App = () => {
           { ...variables }
           style={styles.graph}
 
-          verticalAxisLabel={<MathComponent tex="P_i" />}
+          verticalAxisLabel={<MathComponent tex="P_i"/>}
           horizontalAxisLabel={<>n</>} 
           verticalAxisStep={0.2}
           maxY={1} minY={0}
@@ -37,7 +37,7 @@ const App = () => {
           { ...variables }
           style={styles.graph}
 
-          verticalAxisLabel={<MathComponent tex={`P_${energyLevel}`} />}
+          verticalAxisLabel={<MathComponent tex={`P_${energyLevel}`}/>}
           horizontalAxisLabel={<>T</>} 
           verticalAxisStep={0.2} 
           horizontalAxisStep={AppConstants.HIGHEST_TEMPERATURE / 10} 

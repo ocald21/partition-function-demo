@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import styles from '../../../css/children/ButtonComponent.module.css';
 import AppConstants from '../../../AppConstants';
 
@@ -8,7 +8,7 @@ interface ButtonComponentProps {
     onClick: () => void
 }
 
-const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
+const ButtonComponent: FC<ButtonComponentProps> = (props) => {
     const [buttonPressed, updateButtonPressed] = useState(false);
     const [time, updateTime] = useState(Date.now());
     

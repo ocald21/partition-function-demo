@@ -21,12 +21,10 @@
     height: 30px;
     width: 100%;
     display: flex;
-    justify-content: right;
 }
 
 .markings {
     padding-top: 4px;
     font-family: sans-serif;
     font-size: 14px;
-    text-align: right;
 }
