@@ -41,22 +41,43 @@ function getNumberRange(
     );
 }
 
+function calculateExponentialTerm(
+    microstate: number,
+    temperature: number,
+) {
+    return Math.exp(
+        -(AppConstants.ENERGY_MULTIPLIER * microstate) / 
+        (AppConstants.BOLTZMANN_CONSTANT * temperature)
+    );
+}
+
+function calculateDegeneracy(
+    microstate: number,
+    degeneracy: number,
+) {
+    return degeneracy.map(
+        AppConstants.LOWEST_DEGENERACY, AppConstants.HIGHEST_DEGENERACY, 
+        1 / (microstate + 1), 1
+    ) * (microstate + 1);
+}
+
 function calculateProbability(
     temperature: number,
-    energyLevel: number,
-    levelCount: number,
+    microstate: number,
+    microstateCount: number,
+    degeneracy: number,
 ) {
     var denominator = 0;
 
-    for (let i = 0; i < levelCount; i++) {
-        denominator += Math.exp(-(AppConstants.ENERGY_MULTIPLIER * i) / temperature);
+    for (let i = 0; i < microstateCount; i++) {
+        denominator += calculateDegeneracy(i, degeneracy) * calculateExponentialTerm(i, temperature);
     }
 
-    const numerator = Math.exp(-(AppConstants.ENERGY_MULTIPLIER * energyLevel) / temperature);
+    const numerator = calculateDegeneracy(microstate, degeneracy) * calculateExponentialTerm(microstate, temperature);
     const probability = numerator / denominator;
 
     if (Number.isNaN(probability)) {
-        if (energyLevel == 0) {
+        if (microstate == 0) {
             return 1.0;
         } else {
             return 0.0;
@@ -67,13 +88,14 @@ function calculateProbability(
 }
 
 function getCoordinatePairs(
-    energyLevel: number,
-    levelCount: number,
+    microstate: number,
+    microstateCount: number,
+    degeneracy: number,
 ): Map<number, number> {
     const coordinates: Map<number, number> = new Map();
 
     for (let i = AppConstants.LOWEST_TEMPERATURE; i <= AppConstants.HIGHEST_TEMPERATURE; i++) {
-        coordinates.set(i, calculateProbability(i, energyLevel, levelCount));
+        coordinates.set(i, calculateProbability(i, microstate, microstateCount, degeneracy));
     }
 
     return coordinates;
@@ -81,12 +103,13 @@ function getCoordinatePairs(
 
 function getProbabilityPairs(
     temperature: number,
-    levelCount: number,
+    microStateCount: number,
+    degeneracy: number,
 ): Map<number, number> {
     const probabilities: Map<number, number> = new Map();
     
-    for (let i = AppConstants.LOWEST_ENERGY_LEVEL; i < levelCount; i++) {
-        probabilities.set(i, calculateProbability(temperature, i, levelCount));
+    for (let i = AppConstants.LOWEST_MICROSTATE; i < microStateCount; i++) {
+        probabilities.set(i, calculateProbability(temperature, i, microStateCount, degeneracy));
     }
 
     return probabilities;

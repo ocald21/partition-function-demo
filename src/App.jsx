@@ -1,23 +1,26 @@
 import { MathComponent } from "mathjax-react";
 import { useState } from "react";
-import AppConstants from "../AppConstants.tsx";
-import BarGraphComponent from "./components/BarGraphComponent.tsx";
-import LineGraphComponent from "./components/LineGraphComponent.tsx";
-import VariablesMenu from "./components/VariablesMenu.tsx";
-import styles from "../css/App.module.css"
+import AppConstants from "./AppConstants.tsx";
+import BarGraphComponent from "./ui/components/BarGraphComponent.tsx";
+import LineGraphComponent from "./ui/components/LineGraphComponent.tsx";
+import VariablesMenu from "./ui/components/VariablesMenu.tsx";
+import styles from "./css/App.module.css";
 
 const App = () => {
-  const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE);
-  const [energyLevel, updateEnergyLevel] = useState(AppConstants.LOWEST_ENERGY_LEVEL);
-  const [levelCount, updateLevelCount] = useState(AppConstants.LOWEST_LEVEL_COUNT);
+  const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE + 10);
+  const [microstate, updateMicrostate] = useState(AppConstants.LOWEST_MICROSTATE);
+  const [microstateCount, updateMicrostateCount] = useState(AppConstants.LOWEST_MICROSTATE_COUNT);
+  const [degeneracy, updateDegeneracy] = useState(AppConstants.LOWEST_DEGENERACY);
 
   const variables = {
     temperature,
-    energyLevel,
-    levelCount,
+    microstate,
+    microstateCount,
+    degeneracy,
     updateTemperature,
-    updateEnergyLevel,
-    updateLevelCount,
+    updateMicrostate,
+    updateMicrostateCount,
+    updateDegeneracy,
   };
 
   return (
@@ -37,7 +40,7 @@ const App = () => {
           { ...variables }
           style={styles.graph}
 
-          verticalAxisLabel={<MathComponent tex={`P_${energyLevel}`}/>}
+          verticalAxisLabel={<MathComponent tex={`P_${microstate}`}/>}
           horizontalAxisLabel={<>T</>} 
           verticalAxisStep={0.2} 
           horizontalAxisStep={AppConstants.HIGHEST_TEMPERATURE / 10} 

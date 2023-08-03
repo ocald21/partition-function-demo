@@ -1,14 +1,18 @@
 import { FC } from "react";
 import { Tooltip } from "react-tooltip";
+import styles from "../../../css/children/TooltipComponent.module.css";
 
 interface TooltipComponentProps {
-    content: JSXElement
+    id: string
+    content: ReactElement
 }
  
-const TooltipComponent: FC<TooltipComponentProps> = () => {
+const TooltipComponent: FC<TooltipComponentProps> = (props) => {
     return (
-        <Tooltip>
-            
+        <Tooltip id={props.id}>
+            <div className={styles.standard}>
+                {props.content}
+            </div>
         </Tooltip>
     );
 }

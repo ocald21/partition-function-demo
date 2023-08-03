@@ -1,7 +1,6 @@
 import { useState, useEffect, FC } from 'react';
 import styles from '../../../css/children/ButtonComponent.module.css';
 import AppConstants from '../../../AppConstants';
-import { Tooltip } from 'react-tooltip';
 
 interface ButtonComponentProps {
     text: string

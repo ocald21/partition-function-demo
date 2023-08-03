@@ -1,7 +1,8 @@
 interface VariableProps {
     temperature: number
-    energyLevel: number
-    levelCount: number
+    microstate: number
+    microstateCount: number
+    degeneracy: number
 }
 
 export default VariableProps;
