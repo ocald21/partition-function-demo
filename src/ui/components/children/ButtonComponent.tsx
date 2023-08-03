@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../../css/children/ButtonComponent.module.css';
 import AppConstants from '../../../AppConstants';
+import { Tooltip } from 'react-tooltip';
 
 interface ButtonComponentProps {
     text: string
@@ -30,7 +31,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
     }, [buttonPressed, time, props.onClick]);
 
     return ( 
-        <button 
+        <button
             className={styles.buttonFormatting + " " + props.formatClass}
             onClick={props.onClick}
             onMouseDown={handleMouseDown}
