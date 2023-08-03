@@ -1,0 +1,9 @@
+
+body {
+    margin: 0px;
+    background-color: #282828;
+}
+
+.flex-div {
+    display: flex;
+}

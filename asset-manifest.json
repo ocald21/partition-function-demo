@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/partition-function-demo/static/css/main.1e0ede9b.css",
+    "main.js": "/partition-function-demo/static/js/main.2874353d.js",
+    "index.html": "/partition-function-demo/index.html",
+    "main.1e0ede9b.css.map": "/partition-function-demo/static/css/main.1e0ede9b.css.map",
+    "main.2874353d.js.map": "/partition-function-demo/static/js/main.2874353d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e0ede9b.css",
+    "static/js/main.2874353d.js"
+  ]
+}
