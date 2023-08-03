@@ -1,4 +1,3 @@
-
 interface VariableProps {
     temperature: number
     energyLevel: number

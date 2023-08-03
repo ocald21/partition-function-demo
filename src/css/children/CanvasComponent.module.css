@@ -1,0 +1,22 @@
+
+.containerDiv {
+    height: 80%;
+    width: 85%;
+    position: relative;
+    background-color: #121212;
+}
+
+.canvas {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #7a5af5;
+}
+
+.probabilityDiv {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 15px;
+    font-size: 22px;
+}

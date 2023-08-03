@@ -1,4 +1,3 @@
-
 interface NumberVariableProps {
     value: number
 }

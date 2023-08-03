@@ -1,4 +1,3 @@
-
 interface TitleVariableProps {
     title: string
 }
