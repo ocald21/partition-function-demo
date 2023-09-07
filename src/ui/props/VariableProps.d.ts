@@ -1,7 +1,7 @@
 interface VariableProps {
     temperature: number
-    microstate: number
-    microstateCount: number
+    energyLevel: number
+    energyLevelCount: number
     degeneracy: number
 }
 

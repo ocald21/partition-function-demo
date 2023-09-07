@@ -8,18 +8,18 @@ import styles from "./css/App.module.css";
 
 const App = () => {
   const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE + 10);
-  const [microstate, updateMicrostate] = useState(AppConstants.LOWEST_MICROSTATE);
-  const [microstateCount, updateMicrostateCount] = useState(AppConstants.LOWEST_MICROSTATE_COUNT);
+  const [energyLevel, updateEnergyLevel] = useState(AppConstants.LOWEST_ENERGY_LEVEL);
+  const [energyLevelCount, updateEnergyLevelCount] = useState(AppConstants.LOWEST_ENERGY_LEVEL_COUNT);
   const [degeneracy, updateDegeneracy] = useState(AppConstants.LOWEST_DEGENERACY);
 
   const variables = {
     temperature,
-    microstate,
-    microstateCount,
+    energyLevel,
+    energyLevelCount,
     degeneracy,
     updateTemperature,
-    updateMicrostate,
-    updateMicrostateCount,
+    updateEnergyLevel,
+    updateEnergyLevelCount,
     updateDegeneracy,
   };
 
@@ -40,7 +40,7 @@ const App = () => {
           { ...variables }
           style={styles.graph}
 
-          verticalAxisLabel={<MathComponent tex={`P_${microstate}`}/>}
+          verticalAxisLabel={<MathComponent tex={`P_${energyLevel}`}/>}
           horizontalAxisLabel={<>T</>} 
           verticalAxisStep={0.2} 
           horizontalAxisStep={AppConstants.HIGHEST_TEMPERATURE / 10} 

@@ -3,7 +3,7 @@ import SimulationFunctions from '../../SimulationFunctions';
 import DynamicGraphProps from '../props/DynamicGraphProps';
 import VerticalAxisComponent from './children/VerticalAxisComponent';
 import HorizontalAxisComponent from './children/HorizontalAxisComponent';
-import "../../extensions/CanvasExtensions.d.ts";
+import "../../extensions/CanvasRenderingContext2D";
 import "../../extensions/MapExtensions.d.ts"
 import "../../extensions/NumberExtensions.d.ts"
 import CanvasComponent from './children/CanvasComponent';

@@ -8,10 +8,10 @@ import TooltipComponent from "./children/TooltipComponent";
 
 const VariablesMenu: FC<DynamicComponentProps> = (props) => {
     useEffect(() => {
-        if (props.microstate >= props.microstateCount - 1) {
-            props.updateMicrostate(props.microstateCount - 1);
+        if (props.energyLevel >= props.energyLevelCount - 1) {
+            props.updateEnergyLevel(props.energyLevelCount - 1);
         }
-    }, [props.microstateCount]);
+    }, [props.energyLevelCount]);
 
     return(
         <div className={props.style}>
@@ -24,7 +24,7 @@ const VariablesMenu: FC<DynamicComponentProps> = (props) => {
 
                 <div data-tooltip-id="p-fun">
                     <MathComponent 
-                        tex={String.raw`P_${props.microstate} = \frac{g_${props.microstate}e^{\frac{-E_${props.microstate}}{kT}}}{q}`}
+                        tex={String.raw`P_${props.energyLevel} = \frac{g_${props.energyLevel}e^{\frac{-E_${props.energyLevel}}{kT}}}{q}`}
                     />
                 </div>
 
@@ -34,11 +34,11 @@ const VariablesMenu: FC<DynamicComponentProps> = (props) => {
                         <h1>Partition Function</h1>
                         <p>
                             This function encodes how the probabilities are partitioned
-                            among the discrete microstates in a system based on their
+                            among the discrete energy levels in a system based on their
                             individual energies. In this demo, these energies are
                             calculated as multiples of a constant and degeneracy is
-                            applied to each microstate by a factor of the microstate
-                            level + 1   .
+                            applied to each energy level by a factor of the energy level
+                            level + 1.
                         </p>
                     </>}
                 />
@@ -49,34 +49,23 @@ const VariablesMenu: FC<DynamicComponentProps> = (props) => {
                         <h1>Probability Function</h1>
                         <p>
                             This function calculates the probability that the system
-                            occupies microstate {props.microstate}. Change the
-                            current microstate displayed by pressing either the
-                            microstate buttons or bars on the top graph.
+                            occupies energy level {props.energyLevel}. Change the
+                            current energy level displayed by pressing either the
+                            energy level buttons or bars on the top graph.
                         </p>
                     </>}
                 />
             </div>
 
             <VariableComponent
-                title="Microstate (n)"
-                tooltip={<>This changes the current microstate focused.</>}
-                value={props.microstate}
+                title="Energy Level Count (s)"
+                tooltip={<p>This changes the amount of energy levels that can be occupied.</p>}
+                value={props.energyLevelCount}
                 incrementStep={1}
                 decimalPrecision={0}
-                lowestValue={AppConstants.LOWEST_MICROSTATE} 
-                highestValue={props.microstateCount - 1} 
-                updateValue={props.updateMicrostate}
-            />
-
-            <VariableComponent
-                title="Microstate Count (s)"
-                tooltip={<p>This changes the amount of microstates that can be occupied.</p>}
-                value={props.microstateCount}
-                incrementStep={1}
-                decimalPrecision={0}
-                lowestValue={AppConstants.LOWEST_MICROSTATE_COUNT}
-                highestValue={AppConstants.HIGHEST_MICROSTATE}
-                updateValue={props.updateMicrostateCount}
+                lowestValue={AppConstants.LOWEST_ENERGY_LEVEL_COUNT}
+                highestValue={AppConstants.HIGHEST_ENERGY_LEVEL_COUNT}
+                updateValue={props.updateEnergyLevelCount}
             />
 
             <VariableComponent
@@ -94,11 +83,22 @@ const VariablesMenu: FC<DynamicComponentProps> = (props) => {
                 title="Degeneracy Factor (g)"
                 tooltip={<p>This factor controls the amount of degeneracy applied to the probability, where 0 is no degeneracy and 1 is full degeneracy.</p>}
                 value={props.degeneracy}
-                incrementStep={0.01}
-                decimalPrecision={2}
+                incrementStep={1}
+                decimalPrecision={0}
                 lowestValue={AppConstants.LOWEST_DEGENERACY}
                 highestValue={AppConstants.HIGHEST_DEGENERACY}
                 updateValue={props.updateDegeneracy}
+            />
+
+            <VariableComponent
+                title="Specific Level (n)"
+                tooltip={<>This changes the current energy level focused.</>}
+                value={props.energyLevel}
+                incrementStep={1}
+                decimalPrecision={0}
+                lowestValue={AppConstants.LOWEST_ENERGY_LEVEL} 
+                highestValue={props.energyLevelCount - 1} 
+                updateValue={props.updateEnergyLevel}
             />
         </div>
     );
