@@ -6,7 +6,7 @@ import DynamicComponentProps from "../props/DynamicComponentProps";
 import AppConstants from "../../AppConstants";
 import TooltipComponent from "./children/TooltipComponent";
 
-const VariablesMenu: FC<DynamicComponentProps> = ({
+export default const VariablesMenu: FC<DynamicComponentProps> = ({
     energyLevel,
     levelCount,
     temperature,
@@ -112,5 +112,3 @@ const VariablesMenu: FC<DynamicComponentProps> = ({
         </div>
     );
 }
-
-export default VariablesMenu;
