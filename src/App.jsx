@@ -1,23 +1,26 @@
 import { MathComponent } from "mathjax-react";
 import { useState } from "react";
-import AppConstants from "../AppConstants.tsx";
-import BarGraphComponent from "./components/BarGraphComponent.tsx";
-import LineGraphComponent from "./components/LineGraphComponent.tsx";
-import VariablesMenu from "./components/VariablesMenu.tsx";
-import styles from "../css/App.module.css"
+import AppConstants from "./AppConstants.tsx";
+import BarGraphComponent from "./ui/components/BarGraphComponent.tsx";
+import LineGraphComponent from "./ui/components/LineGraphComponent.tsx";
+import VariablesMenu from "./ui/components/VariablesMenu.tsx";
+import styles from "./css/App.module.css";
 
 const App = () => {
-  const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE);
+  const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE + 10);
   const [energyLevel, updateEnergyLevel] = useState(AppConstants.LOWEST_ENERGY_LEVEL);
-  const [levelCount, updateLevelCount] = useState(AppConstants.LOWEST_LEVEL_COUNT);
+  const [energyLevelCount, updateEnergyLevelCount] = useState(AppConstants.LOWEST_ENERGY_LEVEL_COUNT);
+  const [degeneracy, updateDegeneracy] = useState(AppConstants.LOWEST_DEGENERACY);
 
   const variables = {
     temperature,
     energyLevel,
-    levelCount,
+    energyLevelCount,
+    degeneracy,
     updateTemperature,
     updateEnergyLevel,
-    updateLevelCount,
+    updateEnergyLevelCount,
+    updateDegeneracy,
   };
 
   return (

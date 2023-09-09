@@ -4,36 +4,47 @@ import buttonStyles from "../../../css/children/ButtonComponent.module.css";
 import styles from "../../../css/children/VariableComponent.module.css"
 import NumberVariableProps from '../../props/NumberVariableProps';
 import StringVariableProps from '../../props/StringVariableProps';
+import TooltipComponent from './TooltipComponent';
 
 interface VariableComponentProps extends NumberVariableProps, StringVariableProps {
+    tooltip: ReactElement
     incrementStep: number
     lowestValue: number
     highestValue: number
+    decimalPrecision: number
     updateValue: Dispatch<SetStateAction<number>>
 }
  
 const VariableComponent: FC<VariableComponentProps> = (props) => {
     const incrementEnergyLevel = () => {
         const newLevel = props.value + props.incrementStep > props.highestValue
-            ? props.value : props.value + props.incrementStep;
+            ? props.highestValue : props.value + props.incrementStep;
         props.updateValue(newLevel);
     }
 
     const decrementEnergyLevel = () => {
         const newLevel = props.value - props.incrementStep < props.lowestValue
-            ? props.value : props.value - props.incrementStep;
+            ? props.lowestValue : props.value - props.incrementStep;
         props.updateValue(newLevel)
     }
 
     return (
         <>
-            <p className={styles.variableTitle}>
+            <p 
+                data-tooltip-id={props.title.replace(/\s/g, "")}
+                className={styles.variableTitle}
+            >
                 {props.title}
             </p>
 
+            <TooltipComponent 
+                id={props.title.replace(/\s/g, "")}
+                content={props.tooltip}
+            />
+
             <div className={styles.displayButtonDiv}>
                 <p className={styles.variableDisplay}>
-                    {props.value}
+                    {props.value.toFixed(props.decimalPrecision)}
                 </p>
 
                 <ButtonComponent 

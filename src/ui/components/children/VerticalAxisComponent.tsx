@@ -9,21 +9,19 @@ const VerticalAxisComponent: FC<AxisComponentProps> = (props) => {
                 {props.label}
             </div>
 
-            <div className={styles.markingsDiv}>
-                {
-                    props.numberRange.map((value) => (
-                        <p
-                            key={value}
-                            className={styles.markings}
-                            style={{
-                                height: `calc(100% / ${props.numberRange.length})`,
-                            }}
-                        >
-                            {value}
-                        </p>
-                    ))
-                }
-            </div>
+            <div className={styles.markingsDiv}>{
+                props.numberRange.map((value) => (
+                    <p
+                        key={value}
+                        className={styles.markings}
+                        style={{
+                            height: `calc(100% / ${props.numberRange.length})`,
+                        }}
+                    >
+                        {value}
+                    </p>
+                ))
+            }</div>
         </div>
     );
 }

@@ -30,7 +30,7 @@ const ButtonComponent: FC<ButtonComponentProps> = (props) => {
     }, [buttonPressed, time, props.onClick]);
 
     return ( 
-        <button 
+        <button
             className={styles.buttonFormatting + " " + props.formatClass}
             onClick={props.onClick}
             onMouseDown={handleMouseDown}

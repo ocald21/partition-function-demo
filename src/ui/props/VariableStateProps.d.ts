@@ -3,7 +3,8 @@ import { Dispatch, SetStateAction } from "react";
 interface VariableStateProps {
     updateTemperature: Dispatch<SetStateAction<number>>
     updateEnergyLevel: Dispatch<SetStateAction<number>>
-    updateLevelCount: Dispatch<SetStateAction<number>>
+    updateEnergyLevelCount: Dispatch<SetStateAction<number>>
+    updateDegeneracy: Dispatch<SetStateAction<number>>
 }
 
 export default VariableStateProps;

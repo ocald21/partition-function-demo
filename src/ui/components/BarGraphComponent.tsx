@@ -8,7 +8,7 @@ import BarCanvasComponent from "./children/BarCanvasComponent";
  
 const BarGraphComponent: FC<DynamicGraphProps> = (props) => {
     const verticalRange = SimulationFunctions.getNumberRange(props.minY, props.maxY, props.verticalAxisStep, 1, true);
-    const horizontalRange = SimulationFunctions.getRange(props.levelCount, 1, 0, false);
+    const horizontalRange = SimulationFunctions.getRange(props.energyLevelCount, 1, 0, false);
         
     return ( 
         <div className={props.style}>

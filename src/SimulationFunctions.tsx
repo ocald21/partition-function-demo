@@ -41,18 +41,57 @@ function getNumberRange(
     );
 }
 
+function calculateExponentialTerm(
+    energyLevel: number,
+    temperature: number,
+) {
+    return Math.exp(
+        -(AppConstants.ENERGY_MULTIPLIER * energyLevel) / 
+        (AppConstants.BOLTZMANN_CONSTANT * temperature)
+    );
+}
+
+function calculateDegeneracy(
+    energyLevel: number,
+    degeneracy: number,
+) {
+    return degeneracy.map(
+        AppConstants.LOWEST_DEGENERACY, AppConstants.HIGHEST_DEGENERACY, 
+        1 / (energyLevel + 1), 1
+
+        //1-5  -> 2/5   0.4
+        // -> 0.4 -> (0.4 - 1)
+    ) * (energyLevel + 1);
+    // return (2 * degeneracy) + 1;
+}
+
+function calcualatePartition(
+    energyLevel: number,
+    degeneracy: number,
+    temperature: number
+) {
+    const degeneracys = calculateDegeneracy(energyLevel, degeneracy);
+
+    // if (degeneracys != 1) {
+    //     console.log("energyLevel: %d, degeneracy: %d, temp: %d, calcDeg: %d",energyLevel, degeneracy, temperature, degeneracys);
+    // }
+
+    return calculateDegeneracy(energyLevel, degeneracy) * calculateExponentialTerm(energyLevel, temperature);
+}
+
 function calculateProbability(
     temperature: number,
     energyLevel: number,
-    levelCount: number,
+    energyLevelCount: number,
+    degeneracy: number,
 ) {
     var denominator = 0;
 
-    for (let i = 0; i < levelCount; i++) {
-        denominator += Math.exp(-(AppConstants.ENERGY_MULTIPLIER * i) / temperature);
+    for (let i = 0; i < energyLevelCount; i++) {
+        denominator += calcualatePartition(i, degeneracy, temperature);
     }
 
-    const numerator = Math.exp(-(AppConstants.ENERGY_MULTIPLIER * energyLevel) / temperature);
+    const numerator = calcualatePartition(energyLevel, degeneracy, temperature);
     const probability = numerator / denominator;
 
     if (Number.isNaN(probability)) {
@@ -68,12 +107,13 @@ function calculateProbability(
 
 function getCoordinatePairs(
     energyLevel: number,
-    levelCount: number,
+    energyLevelCount: number,
+    degeneracy: number,
 ): Map<number, number> {
     const coordinates: Map<number, number> = new Map();
 
     for (let i = AppConstants.LOWEST_TEMPERATURE; i <= AppConstants.HIGHEST_TEMPERATURE; i++) {
-        coordinates.set(i, calculateProbability(i, energyLevel, levelCount));
+        coordinates.set(i, calculateProbability(i, energyLevel, energyLevelCount, degeneracy));
     }
 
     return coordinates;
@@ -81,12 +121,13 @@ function getCoordinatePairs(
 
 function getProbabilityPairs(
     temperature: number,
-    levelCount: number,
+    energyLevelCount: number,
+    degeneracy: number,
 ): Map<number, number> {
     const probabilities: Map<number, number> = new Map();
     
-    for (let i = AppConstants.LOWEST_ENERGY_LEVEL; i < levelCount; i++) {
-        probabilities.set(i, calculateProbability(temperature, i, levelCount));
+    for (let i = AppConstants.LOWEST_ENERGY_LEVEL; i < energyLevelCount; i++) {
+        probabilities.set(i, calculateProbability(temperature, i, energyLevelCount, degeneracy));
     }
 
     return probabilities;
