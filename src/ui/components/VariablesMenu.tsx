@@ -5,50 +5,58 @@ import styles from "../../css/components/VariablesMenu.module.css";
 import DynamicComponentProps from "../props/DynamicComponentProps";
 import AppConstants from "../../AppConstants";
 
-const VariablesMenu: FC<DynamicComponentProps> = (props) => {
+const VariablesMenu: FC<DynamicComponentProps> = ({
+    energyLevel,
+    levelCount,
+    temperature,
+    updateEnergyLevel,
+    updateLevelCount,
+    updateTemperature,
+    style,
+}) => {
     useEffect(() => {
-        if (props.energyLevel >= props.levelCount - 1) {
-            props.updateEnergyLevel(props.levelCount - 1);
+        if (energyLevel >= levelCount - 1) {
+            updateEnergyLevel(levelCount - 1);
         }
-    }, [props.levelCount]);
+    }, [levelCount]);
 
     return(
-        <div className={props.style}>
+        <div className={style}>
             <div className={styles.equationsDiv}>
                 <MathComponent
                     tex={String.raw`q = \sum\limits_{n=0}^s e^{\frac{-E_i}{kT}}`}
                 />
 
                 <MathComponent 
-                    tex={String.raw`P_${props.energyLevel} = \frac{e^{\frac{-E_${props.energyLevel}}{kT}}}{q}`}
+                    tex={String.raw`P_${energyLevel} = \frac{e^{\frac{-E_${energyLevel}}{kT}}}{q}`}
                 />
             </div>
 
             <VariableComponent
                 title={"Energy Level (n)"}
-                value={props.energyLevel}
+                value={energyLevel}
                 incrementStep={1} 
                 lowestValue={AppConstants.LOWEST_ENERGY_LEVEL} 
-                highestValue={props.levelCount - 1} 
-                updateValue={props.updateEnergyLevel}
+                highestValue={levelCount - 1} 
+                updateValue={updateEnergyLevel}
             />
 
             <VariableComponent
                 title={"Level Count (s)"}
-                value={props.levelCount}
+                value={levelCount}
                 incrementStep={1}
                 lowestValue={AppConstants.LOWEST_LEVEL_COUNT}
                 highestValue={AppConstants.HIGHEST_ENERGY_LEVEL}
-                updateValue={props.updateLevelCount}
+                updateValue={updateLevelCount}
             />
 
             <VariableComponent
                 title={"Temperature (K)"}
-                value={props.temperature} 
+                value={temperature} 
                 incrementStep={1} 
                 lowestValue={AppConstants.LOWEST_TEMPERATURE} 
                 highestValue={AppConstants.HIGHEST_TEMPERATURE} 
-                updateValue={props.updateTemperature}                
+                updateValue={updateTemperature}                
             />
         </div>
     );

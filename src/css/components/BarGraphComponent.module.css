@@ -1,0 +1,32 @@
+
+.boxDivFormatting {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.graphContainer {
+    height: 80%;
+    width: 85%;
+
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    
+    box-sizing: border-box;
+    border: 1px solid #7a5af5;
+    background-color: #121212;
+}
+
+.shadedDivFormatting {
+    height: 10%;
+    
+    padding-left: 10px;
+    padding-right: 10px;
+
+    color: transparent;
+    user-select: none;
+}
