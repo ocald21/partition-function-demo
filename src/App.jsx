@@ -7,10 +7,10 @@ import VariablesMenu from "./ui/components/VariablesMenu.tsx";
 import styles from "./css/App.module.css";
 
 const App = () => {
-  const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE + 10);
+  const [temperature, updateTemperature] = useState(AppConstants.LOWEST_TEMPERATURE);
   const [energyLevel, updateEnergyLevel] = useState(AppConstants.LOWEST_ENERGY_LEVEL);
   const [energyLevelCount, updateEnergyLevelCount] = useState(AppConstants.LOWEST_ENERGY_LEVEL_COUNT);
-  const [degeneracy, updateDegeneracy] = useState(AppConstants.LOWEST_DEGENERACY);
+  const [degeneracy, updateDegeneracy] = useState(AppConstants.DEGENERACY_MAP);
 
   const variables = {
     temperature,

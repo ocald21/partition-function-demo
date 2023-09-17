@@ -8,18 +8,20 @@ import TooltipComponent from "./children/TooltipComponent";
 
 const VariablesMenu: FC<DynamicComponentProps> = ({
     energyLevel,
-    levelCount,
+    energyLevelCount,
     temperature,
+    degeneracy,
     updateEnergyLevel,
-    updateLevelCount,
+    updateEnergyLevelCount,
     updateTemperature,
+    updateDegeneracy,
     style,
 }) => {
     useEffect(() => {
-        if (energyLevel >= levelCount - 1) {
-            updateEnergyLevel(levelCount - 1);
+        if (energyLevel >= energyLevelCount - 1) {
+            updateEnergyLevel(energyLevelCount - 1);
         }
-    }, [levelCount]);
+    }, [energyLevelCount]);
 
     return(
         <div className={style}>
@@ -32,7 +34,7 @@ const VariablesMenu: FC<DynamicComponentProps> = ({
 
                 <div data-tooltip-id="p-fun">
                     <MathComponent 
-                        tex={String.raw`P_${props.energyLevel} = \frac{g_${props.energyLevel}e^{\frac{-E_${props.energyLevel}}{kT}}}{q}`}
+                        tex={String.raw`P_${energyLevel} = \frac{g_${energyLevel}e^{\frac{-E_${energyLevel}}{kT}}}{q}`}
                     />
                 </div>
 
@@ -52,62 +54,60 @@ const VariablesMenu: FC<DynamicComponentProps> = ({
                 />
 
                 <MathComponent 
-                    tex={String.raw`P_${props.energyLevel} = \frac{e^{\frac{-E_${props.energyLevel}}{kT}}}{q}`}
+                    tex={String.raw`P_${energyLevel} = \frac{e^{\frac{-E_${energyLevel}}{kT}}}{q}`}
                 />
             </div>
 
             <VariableComponent
                 title={"Energy Level (n)"}
-                value={props.energyLevel}
-                incrementStep={1} 
-                lowestValue={AppConstants.LOWEST_ENERGY_LEVEL} 
-                highestValue={props.levelCount - 1} 
-                updateValue={props.updateEnergyLevel}
+                value={energyLevel}
+                incrementStep={1}
+                lowestValue={AppConstants.LOWEST_ENERGY_LEVEL}
+                highestValue={energyLevelCount - 1}
+                updateValue={updateEnergyLevel} decimalPrecision={0}            
             />
 
             <VariableComponent
                 title={"Level Count (s)"}
-                value={props.levelCount}
+                value={energyLevelCount}
                 incrementStep={1}
                 decimalPrecision={0}
                 lowestValue={AppConstants.LOWEST_ENERGY_LEVEL_COUNT}
                 highestValue={AppConstants.HIGHEST_ENERGY_LEVEL_COUNT}
-                updateValue={props.updateEnergyLevelCount}
+                updateValue={updateEnergyLevelCount}
             />
 
             <VariableComponent
                 title="Temperature (K)"
                 tooltip={<p>This changes the temperature in the system.</p>}
-                value={props.temperature} 
-                title={"Temperature (K)"}
                 value={temperature} 
                 incrementStep={1} 
                 decimalPrecision={0}
                 lowestValue={AppConstants.LOWEST_TEMPERATURE} 
                 highestValue={AppConstants.HIGHEST_TEMPERATURE} 
-                updateValue={props.updateTemperature}                
+                updateValue={updateTemperature}                
             />
 
             <VariableComponent 
                 title="Degeneracy Factor (g)"
                 tooltip={<p>This factor controls the amount of degeneracy applied to the probability, where 0 is no degeneracy and 1 is full degeneracy.</p>}
-                value={props.degeneracy}
+                value={degeneracy.get(energyLevel)!}
                 incrementStep={1}
                 decimalPrecision={0}
                 lowestValue={AppConstants.LOWEST_DEGENERACY}
                 highestValue={AppConstants.HIGHEST_DEGENERACY}
-                updateValue={props.updateDegeneracy}
+                updateValue={updateDegeneracy}
             />
 
             <VariableComponent
                 title="Specific Level (n)"
                 tooltip={<>This changes the current energy level focused.</>}
-                value={props.energyLevel}
+                value={energyLevel}
                 incrementStep={1}
                 decimalPrecision={0}
                 lowestValue={AppConstants.LOWEST_ENERGY_LEVEL} 
-                highestValue={props.energyLevelCount - 1} 
-                updateValue={props.updateEnergyLevel}
+                highestValue={energyLevelCount - 1} 
+                updateValue={updateEnergyLevel}
             />
         </div>
     );

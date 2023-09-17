@@ -1,4 +1,17 @@
 import AppConstants from "./AppConstants";
+import DegNumber from "./types/DegNumber";
+
+const valuesMap = new Map<DegNumber, number>([
+    [DegNumber.ONE, 1],
+    [DegNumber.TWO, 2],
+    [DegNumber.THREE, 3],
+    [DegNumber.FOUR, 4],
+    [DegNumber.FIVE, 5],
+])
+
+function degToNumber(deg: DegNumber) {
+    return valuesMap.get(deg)!
+}
 
 function getRange(
     length: number,
@@ -51,39 +64,19 @@ function calculateExponentialTerm(
     );
 }
 
-function calculateDegeneracy(
-    energyLevel: number,
-    degeneracy: number,
-) {
-    return degeneracy.map(
-        AppConstants.LOWEST_DEGENERACY, AppConstants.HIGHEST_DEGENERACY, 
-        1 / (energyLevel + 1), 1
-
-        //1-5  -> 2/5   0.4
-        // -> 0.4 -> (0.4 - 1)
-    ) * (energyLevel + 1);
-    // return (2 * degeneracy) + 1;
-}
-
 function calcualatePartition(
     energyLevel: number,
-    degeneracy: number,
+    degeneracy: DegNumber,
     temperature: number
 ) {
-    const degeneracys = calculateDegeneracy(energyLevel, degeneracy);
-
-    // if (degeneracys != 1) {
-    //     console.log("energyLevel: %d, degeneracy: %d, temp: %d, calcDeg: %d",energyLevel, degeneracy, temperature, degeneracys);
-    // }
-
-    return calculateDegeneracy(energyLevel, degeneracy) * calculateExponentialTerm(energyLevel, temperature);
+    return degToNumber(degeneracy) * calculateExponentialTerm(energyLevel, temperature);
 }
 
 function calculateProbability(
     temperature: number,
     energyLevel: number,
     energyLevelCount: number,
-    degeneracy: number,
+    degeneracy: DegNumber,
 ) {
     var denominator = 0;
 
@@ -108,7 +101,7 @@ function calculateProbability(
 function getCoordinatePairs(
     energyLevel: number,
     energyLevelCount: number,
-    degeneracy: number,
+    degeneracy: DegNumber,
 ): Map<number, number> {
     const coordinates: Map<number, number> = new Map();
 

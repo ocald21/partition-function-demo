@@ -5,14 +5,15 @@ import styles from "../../../css/children/VariableComponent.module.css"
 import NumberVariableProps from '../../props/NumberVariableProps';
 import StringVariableProps from '../../props/StringVariableProps';
 import TooltipComponent from './TooltipComponent';
+import { ReactElement } from '../../../types/types';
 
 interface VariableComponentProps extends NumberVariableProps, StringVariableProps {
-    tooltip: ReactElement
+    tooltip?: ReactElement
     incrementStep: number
     lowestValue: number
     highestValue: number
     decimalPrecision: number
-    updateValue: Dispatch<SetStateAction<number>>
+    updateValue: Dispatch<SetStateAction<any>>
 }
  
 const VariableComponent: FC<VariableComponentProps> = (props) => {
@@ -25,7 +26,7 @@ const VariableComponent: FC<VariableComponentProps> = (props) => {
     const decrementEnergyLevel = () => {
         const newLevel = props.value - props.incrementStep < props.lowestValue
             ? props.lowestValue : props.value - props.incrementStep;
-        props.updateValue(newLevel)
+        props.updateValue(newLevel);
     }
 
     return (

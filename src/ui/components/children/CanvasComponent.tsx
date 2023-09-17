@@ -6,6 +6,7 @@ import AppConstants from "../../../AppConstants";
 import DynamicComponentProps from "../../props/DynamicComponentProps";
 import TooltipComponent from "./TooltipComponent";
 import ExtendedCanvas from "../../../extensions/HTMLCanvasElement";
+import { CanvasRef } from "../../../types/types";
 
 const CanvasComponent: FC<DynamicComponentProps> = ({ 
     temperature, 
@@ -20,7 +21,7 @@ const CanvasComponent: FC<DynamicComponentProps> = ({
     useEffect(() => {
         const canvas = canvasRef.current!;
         const context = canvas.getContext('2d')!;
-        const points = SimulationFunctions.getCoordinatePairs(energyLevel, energyLevelCount, degeneracy)
+        const points = SimulationFunctions.getCoordinatePairs(energyLevel, energyLevelCount, degeneracy.get(energyLevel)!)
             .mapKeys((temperature) => temperature.map(0, AppConstants.HIGHEST_TEMPERATURE, 0, canvas.width))
             .mapValues((probability) => probability.map(0, 1, 0, canvas.height));
 
@@ -29,7 +30,7 @@ const CanvasComponent: FC<DynamicComponentProps> = ({
 
         canvas.getBoundingClientRect();
 
-        const probability = SimulationFunctions.calculateProbability(temperature, energyLevel, energyLevelCount, degeneracy);
+        const probability = SimulationFunctions.calculateProbability(temperature, energyLevel, energyLevelCount, degeneracy.get(energyLevel)!);
         const lineX = temperature.map(0, AppConstants.HIGHEST_TEMPERATURE, 0, canvas.width)
         const lineY = probability.map(0, 1, 0, canvas.height)
 
@@ -54,7 +55,7 @@ const CanvasComponent: FC<DynamicComponentProps> = ({
                 data-tooltip-id="probability"
                 className={styles.probabilityDiv}
             >
-                <MathComponent tex={`P_${energyLevel} = ${SimulationFunctions.calculateProbability(temperature, energyLevel, energyLevelCount, degeneracy).toFixed(5)}`}/>
+                <MathComponent tex={`P_${energyLevel} = ${SimulationFunctions.calculateProbability(temperature, energyLevel, energyLevelCount, degeneracy.get(energyLevel)!).toFixed(5)}`}/>
             </div>
 
             <TooltipComponent

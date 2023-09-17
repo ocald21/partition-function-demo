@@ -1,5 +1,4 @@
 import { MouseEvent } from "react"
-import SimulationContainer from "../SimulationFunctions";
 import AppConstants from "../AppConstants";
 
 interface AbstractExtendedCanvas extends HTMLCanvasElement {
