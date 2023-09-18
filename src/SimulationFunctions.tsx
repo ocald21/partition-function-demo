@@ -1,4 +1,5 @@
-import AppConstants from "./AppConstants";
+import { AppConstants } from "./AppConstants";
+import { Degeneracy, valueOfDegeneracy } from "./types/Degeneracy";
 
 function getRange(
     length: number,
@@ -51,32 +52,12 @@ function calculateExponentialTerm(
     );
 }
 
-function calculateDegeneracy(
-    energyLevel: number,
-    degeneracy: number,
-) {
-    return degeneracy.map(
-        AppConstants.LOWEST_DEGENERACY, AppConstants.HIGHEST_DEGENERACY, 
-        1 / (energyLevel + 1), 1
-
-        //1-5  -> 2/5   0.4
-        // -> 0.4 -> (0.4 - 1)
-    ) * (energyLevel + 1);
-    // return (2 * degeneracy) + 1;
-}
-
 function calcualatePartition(
     energyLevel: number,
-    degeneracy: number,
+    degeneracy: Degeneracy,
     temperature: number
 ) {
-    const degeneracys = calculateDegeneracy(energyLevel, degeneracy);
-
-    // if (degeneracys != 1) {
-    //     console.log("energyLevel: %d, degeneracy: %d, temp: %d, calcDeg: %d",energyLevel, degeneracy, temperature, degeneracys);
-    // }
-
-    return calculateDegeneracy(energyLevel, degeneracy) * calculateExponentialTerm(energyLevel, temperature);
+    return valueOfDegeneracy(degeneracy) * calculateExponentialTerm(energyLevel, temperature);
 }
 
 function calculateProbability(
@@ -133,12 +114,10 @@ function getProbabilityPairs(
     return probabilities;
 }
 
-const SimulationContainer = {
+export const SimulationContainer = {
     getRange,
     getNumberRange,
     calculateProbability,
     getCoordinatePairs,
     getProbabilityPairs,
-};
-
-export default SimulationContainer;
+} as const;

@@ -1,6 +1,5 @@
 import { MouseEvent } from "react"
-import SimulationContainer from "../SimulationFunctions";
-import AppConstants from "../AppConstants";
+import { AppConstants } from "../AppConstants";
 
 interface AbstractExtendedCanvas extends HTMLCanvasElement {
     getMouseX(event: MouseEvent<HTMLCanvasElement, any>): number

@@ -1,6 +1,6 @@
 import { useState, useEffect, FC } from 'react';
 import styles from '../../../css/children/ButtonComponent.module.css';
-import AppConstants from '../../../AppConstants';
+import { AppConstants } from '../../../AppConstants';
 
 interface ButtonComponentProps {
     text: string
